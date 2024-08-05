@@ -14,13 +14,19 @@ function linkedList(head = null) {
       current.nextNode = newNode;
     } else {
       while (current.nextNode !== null) {
-        current = current.newNode;
+        current = current.nextNode;
       }
       current.nextNode = newNode;
     }
   }
 
-  return { head, append };
+  function prepend(value) {
+    let newNode = new node(value);
+    newNode.nextNode = this.head;
+    this.head = newNode;
+  }
+
+  return { head, append, prepend };
 }
 
 function node(value = null, nextNode = null) {
@@ -31,11 +37,3 @@ function node(value = null, nextNode = null) {
 }
 
 const defaultList = new linkedList();
-
-console.log(defaultList);
-
-defaultList.append("foo");
-
-defaultList.append("bar");
-
-console.log(defaultList);

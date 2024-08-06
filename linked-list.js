@@ -59,7 +59,25 @@ function linkedList(head = null) {
     }
   }
 
-  return { head, append, prepend, size, getHead, tail };
+  function at(index) {
+    if (this.head === null || index === 0) {
+      return this.head;
+    } else if (index < 0 || typeof index !== "number") {
+      return "Please enter a number at or above 0.";
+    } else {
+      let current = this.head;
+      for (let i = 0; i < index; i++) {
+        if (current.nextNode === null) {
+          return "Index exceeds size of list. Please try again!";
+        } else {
+          current = current.nextNode;
+        }
+      }
+      return current;
+    }
+  }
+
+  return { head, append, prepend, size, getHead, tail, at };
 }
 
 function node(value = null, nextNode = null) {
@@ -71,14 +89,10 @@ function node(value = null, nextNode = null) {
 
 const defaultList = new linkedList();
 
-console.log(defaultList.tail());
+defaultList.append("first");
 
-defaultList.append("buzz");
+defaultList.append("second");
 
-defaultList.prepend("fizz");
+defaultList.append("third");
 
-defaultList.prepend("first");
-
-defaultList.append("last");
-
-console.log(defaultList.tail());
+defaultList.append("fourth and last");

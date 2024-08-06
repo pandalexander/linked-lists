@@ -47,7 +47,19 @@ function linkedList(head = null) {
     return this.head;
   }
 
-  return { head, append, prepend, size, getHead };
+  function tail() {
+    if (this.head !== null) {
+      let current = this.head;
+      while (current.nextNode !== null) {
+        current = current.nextNode;
+      }
+      return current;
+    } else {
+      return this.head;
+    }
+  }
+
+  return { head, append, prepend, size, getHead, tail };
 }
 
 function node(value = null, nextNode = null) {
@@ -59,7 +71,7 @@ function node(value = null, nextNode = null) {
 
 const defaultList = new linkedList();
 
-console.log(defaultList.getHead());
+console.log(defaultList.tail());
 
 defaultList.append("buzz");
 
@@ -69,4 +81,4 @@ defaultList.prepend("first");
 
 defaultList.append("last");
 
-console.log(defaultList.getHead());
+console.log(defaultList.tail());

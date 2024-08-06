@@ -115,7 +115,38 @@ function linkedList(head = null) {
     return false;
   }
 
-  return { head, append, prepend, size, getHead, tail, at, pop, contains };
+  function find(value) {
+    if (this.head === null) {
+      return null;
+    } else {
+      let index = 0;
+      let current = this.head;
+      if (this.head.value === value) {
+        return index;
+      }
+      while (current.nextNode !== null) {
+        current = current.nextNode;
+        index++;
+        if (current.value === value) {
+          return index;
+        }
+      }
+    }
+    return null;
+  }
+
+  return {
+    head,
+    append,
+    prepend,
+    size,
+    getHead,
+    tail,
+    at,
+    pop,
+    contains,
+    find,
+  };
 }
 
 function node(value = null, nextNode = null) {
@@ -131,6 +162,6 @@ defaultList.append("Mike");
 defaultList.append("Chris");
 defaultList.append("Alex");
 
-console.log(defaultList.contains("Mike"));
+console.log(defaultList.find("Mike"));
 
-console.log(defaultList.contains("Pete"));
+console.log(defaultList.find("Pete"));

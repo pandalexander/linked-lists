@@ -77,7 +77,24 @@ function linkedList(head = null) {
     }
   }
 
-  return { head, append, prepend, size, getHead, tail, at };
+  function pop() {
+    if (this.head === null || this.head.nextNode === null) {
+      this.head = null;
+      return;
+    } else {
+      let current = this.head;
+      while (current.nextNode !== null) {
+        if (current.nextNode.nextNode === null) {
+          current.nextNode = null;
+          return;
+        } else {
+          current = current.nextNode;
+        }
+      }
+    }
+  }
+
+  return { head, append, prepend, size, getHead, tail, at, pop };
 }
 
 function node(value = null, nextNode = null) {
@@ -88,11 +105,3 @@ function node(value = null, nextNode = null) {
 }
 
 const defaultList = new linkedList();
-
-defaultList.append("first");
-
-defaultList.append("second");
-
-defaultList.append("third");
-
-defaultList.append("fourth and last");

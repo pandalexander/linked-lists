@@ -135,6 +135,26 @@ function linkedList(head = null) {
     return null;
   }
 
+  function toString() {
+    let fullString = "";
+
+    if (this.head === null) {
+      return "null";
+    } else {
+      let current = this.head;
+      fullString = `( ${current.value} )`;
+
+      while (current.nextNode !== null) {
+        current = current.nextNode;
+        fullString += ` -> ( ${current.value} )`;
+      }
+
+      fullString += " -> null";
+    }
+
+    return fullString;
+  }
+
   return {
     head,
     append,
@@ -146,6 +166,7 @@ function linkedList(head = null) {
     pop,
     contains,
     find,
+    toString,
   };
 }
 
@@ -158,10 +179,11 @@ function node(value = null, nextNode = null) {
 
 const defaultList = new linkedList();
 
-defaultList.append("Mike");
-defaultList.append("Chris");
-defaultList.append("Alex");
+defaultList.append("dog");
+defaultList.append("cat");
+defaultList.append("parrot");
+defaultList.append("hamster");
+defaultList.append("snake");
+defaultList.append("turtle");
 
-console.log(defaultList.find("Mike"));
-
-console.log(defaultList.find("Pete"));
+console.log(defaultList.toString());

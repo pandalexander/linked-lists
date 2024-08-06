@@ -94,7 +94,28 @@ function linkedList(head = null) {
     }
   }
 
-  return { head, append, prepend, size, getHead, tail, at, pop };
+  function contains(value) {
+    // if value is in linked list, return true
+    // else, return false
+
+    if (this.head === null) {
+      return false;
+    } else {
+      let current = this.head;
+      if (current.value === value) {
+        return true;
+      }
+      while (current.nextNode !== null) {
+        current = current.nextNode;
+        if (current.value === value) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  return { head, append, prepend, size, getHead, tail, at, pop, contains };
 }
 
 function node(value = null, nextNode = null) {
@@ -105,3 +126,11 @@ function node(value = null, nextNode = null) {
 }
 
 const defaultList = new linkedList();
+
+defaultList.append("Mike");
+defaultList.append("Chris");
+defaultList.append("Alex");
+
+console.log(defaultList.contains("Mike"));
+
+console.log(defaultList.contains("Pete"));
